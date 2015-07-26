@@ -25,3 +25,15 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
+
+#Windows runtime files
+*.pdb
+node.exe
+appcrt140.dll
+concrt140.dll
+desktopcrt140.dll
+msvcp140.dll
+vcamp140.dll
+vccorlib140.dll
+vcomp140.dll
+vcruntime140.dll
