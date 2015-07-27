@@ -22,7 +22,7 @@ var bnd_cnt = dataset.bands.count();
 
 for (var i = 1; i <= bnd_cnt; i++) {
 	console.log(util.format('band %d calculating check sum ...', i));
-	var check_sum = gdal.checksumImage(dataset.bands.get(i+1));
+	var check_sum = gdal.checksumImage(dataset.bands.get(i));
 	console.log(util.format('band %d check sum: %d', i, check_sum));
 	if (0 === check_sum || gdal.lastError) {
 		console.log(util.format('band %d check sum is 0 OR lastError not null', i));
@@ -30,8 +30,8 @@ for (var i = 1; i <= bnd_cnt; i++) {
 			var le = gdal.lastError;
 			console.log(util.format('last error:\n  code  : %d\n  level : %d\n  msg   : %s', le.code, le.level, le.message));
 		};
-		console.log('exiting!');
-		break;
+		//console.log('exiting!');
+		//break;
 	};
 };
 
