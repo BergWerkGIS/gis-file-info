@@ -9,6 +9,7 @@ if(!fs.existsSync(tiff_path)){ return console.log('not found: ' + tiff_path);}
 
 
 //gdal.verbose();
+gdal.config.set('GTIFF_IGNORE_READ_ERRORS', 'TRUE');
 //gdal.config.set('CPL_DEBUG', 'ON');
 //gdal.config.set('CPL_LOG_ERRORS', 'ON');
 //gdal.config.set('CPL_LOG', 'gdal-log.txt');

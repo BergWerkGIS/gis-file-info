@@ -1,4 +1,10 @@
-# detect-corrupt-tiff
+various scripts to gather informatio about GIS files, mainly for detecting faulty ones
+
+
+----
+
+
+# raster-checksum.js
 using node-gdal to detect corrupt tiffs
 
 http://www.gdal.org/frmt_gtiff.html
