@@ -14,7 +14,7 @@ cnt_single_part=0
 cnt_multi_part=0
 for feat in feats:
     bb = feat.geometry().boundingBox()
-    #print bb.toString()
+    print bb.toString()
     xmin = xmin if xmin < bb.xMinimum() else bb.xMinimum()
     ymin = ymin if ymin < bb.yMinimum() else bb.yMinimum()
     xmax = xmax if xmax > bb.xMaximum() else bb.xMaximum()
