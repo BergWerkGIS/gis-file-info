@@ -33,3 +33,5 @@ ds.layers.forEach(function (lyr) {
 
 out_ds.flush();
 out_ds.close();
+
+console.log('! DONE !');

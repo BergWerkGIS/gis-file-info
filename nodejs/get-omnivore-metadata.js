@@ -10,6 +10,7 @@ mapnikOmnivore.digest(file, function(err, metadata){
 		console.log('err:\n', err);
 	} else {
         console.log('metadata:\n');
-        console.log(metadata);
-	}
+        console.log(JSON.stringify(metadata, null, ' '));
+    }
+    console.log('finished');
 });
