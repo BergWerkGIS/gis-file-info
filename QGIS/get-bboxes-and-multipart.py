@@ -1,3 +1,4 @@
+verbose = False
 from qgis.gui import QgsRubberBand
 canvas = iface.mapCanvas()
 lyr = iface.activeLayer()
@@ -5,7 +6,8 @@ lyr_pnt = QgsVectorLayer('Point?crs=epsg:4326&index=yes', 'points', 'memory')
 lyr_line = QgsVectorLayer('LineString?crs=epsg:4326&index=yes', 'lines', 'memory')
 lyr_polygon = QgsVectorLayer('Polygon?crs=epsg:4326&index=yes', 'poly', 'memory')
 lyr_bbox = QgsVectorLayer('Polygon?crs=epsg:4326&index=yes', 'bbox', 'memory')
-feats = lyr.getFeatures()
+#feats = lyr.getFeatures()
+feats = lyr.selectedFeatures() if lyr.selectedFeatureCount() > 0 else lyr.getFeatures()
 xmin=180
 ymin=90
 xmax=-180
@@ -14,7 +16,7 @@ cnt_single_part=0
 cnt_multi_part=0
 for feat in feats:
     bb = feat.geometry().boundingBox()
-    print bb.toString()
+    if verbose: print bb.toString();
     xmin = xmin if xmin < bb.xMinimum() else bb.xMinimum()
     ymin = ymin if ymin < bb.yMinimum() else bb.yMinimum()
     xmax = xmax if xmax > bb.xMaximum() else bb.xMaximum()
@@ -27,10 +29,11 @@ for feat in feats:
     geom = feat.geometry()
     if geom.isMultipart():
         cnt_multi_part += 1
-        #print feat.id(), 'multipart'
-        #print bb.toString()
+        if verbose:
+            print feat.id(), 'multipart'
+            print bb.toString()
         parts = geom.asGeometryCollection()
-        #print 'parts:', len(parts)
+        if verbose: print 'parts:', len(parts);
         for part in parts:
             new_feat = QgsFeature()
             new_feat.setGeometry(part)
