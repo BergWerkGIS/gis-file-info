@@ -5,8 +5,9 @@ var lyr_cnt = ds.layers.count();
 console.log('layers:', lyr_cnt);
 ds.layers.forEach(function (lyr) {
 	console.log(' -', lyr.name);
+	console.log(JSON.stringify(lyr));
 });
-var overall_feat_cnt=0;
+var overall_feat_cnt = 0;
 ds.layers.forEach(function (lyr) {
 	console.log('------------------------', lyr.name, '-----------------------');
 	try {
@@ -14,9 +15,12 @@ ds.layers.forEach(function (lyr) {
 		lyr.features.forEach(function (feat) {
 			feat_cnt++;
 		});
-		console.log('lyr.features.count():', lyr.features.count());
-		console.log('feat_cnt:', feat_cnt);
-		overall_feat_cnt+=feat_cnt;
+		var lyr_feat_cnt = lyr.features.count();
+		console.log('lyr.features.count():', lyr_feat_cnt);
+		if (feat_cnt !== lyr_feat_cnt) {
+			console.error('feat_cnt !== lyr_feat_cnt', feat_cnt, lyr_feat_cnt);
+		}
+		overall_feat_cnt += feat_cnt;
 	}
 	catch (err) {
 		console.error(err);
