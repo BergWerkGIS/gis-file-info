@@ -15,19 +15,18 @@ for feat in feats:
         cnt_single_part += 1
         cnt_features_overall +=1
 
-print 'single part features:', cnt_single_part
-print 'multi part features:' , cnt_multi_part
-print 'all features:', cnt_features_overall
+print '{0} "{1}"'.format(lyr.crs().authid(), lyr.crs().description())
+print
 
-show_max = 30
+print '* single part features:', cnt_single_part
+print '* multi part features:' , cnt_multi_part
+print '* all features:', cnt_features_overall
+print ''
+
+show_max = 10
 show_cnt = 1
-print 'showing first', show_max, 'features with most multiparts----------------'
-#print 'fid: parts'
-#for key, val in sorted(mp_feats.items(), key=lambda kv: kv[1], reverse=True):
-#    print key, ':', val
-#    if show_cnt >= show_max:
-#        break
-#    show_cnt += 1
+print '#### top', show_max, 'features with most multiparts'
+print ''
 
 hdr = 'fid | parts'
 hdr2 = '----- | -----'
@@ -47,3 +46,5 @@ for key, val in sorted(mp_feats.items(), key=lambda kv: kv[1], reverse=True):
     if show_cnt >= show_max:
         break
     show_cnt += 1
+
+print ''
