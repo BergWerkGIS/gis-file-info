@@ -5,6 +5,8 @@ var out_base_name = process.argv[3];
 var ds = gdal.open(in_file);
 var wgs84 = gdal.SpatialReference.fromEPSG(4326);
 
+gdal.verbose();
+
 ds.layers.forEach(function (lyr) {
 	console.log('processing: ', lyr.name);
 	var lyr_name = lyr.name.replace(':', ''); //strip invalid filename characters

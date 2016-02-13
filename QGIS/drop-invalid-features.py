@@ -10,7 +10,7 @@ writer = QgsVectorFileWriter(
     out_name
     , src_prov.encoding()
     , src_prov.fields()
-    , QGis.WKBPolygon
+    , QGis.WKBLineString
     , src_prov.crs()
 )
 if writer.hasError() != QgsVectorFileWriter.NoError:
@@ -26,4 +26,4 @@ else:
         writer.addFeature(feat)
     #cleanup and close writer
     del writer
-    print 'invalid features (dropped):', invalid_cnt
+    print 'NULL features (dropped):', invalid_cnt

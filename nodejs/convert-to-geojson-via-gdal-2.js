@@ -6,6 +6,8 @@ var add_all_fields = process.argv[4] || false;
 var ds = gdal.open(in_file);
 var wgs84 = gdal.SpatialReference.fromEPSG(4326);
 
+gdal.verbose();
+
 //get all possible fields as we (could) be concatenating different layers
 //eg kml or gpx (routes, tracks, ...)
 var all_fields = [];

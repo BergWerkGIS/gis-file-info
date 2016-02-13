@@ -1,4 +1,5 @@
 var gdal = require('gdal');
+gdal.verbose();
 
 var ds = gdal.open(process.argv[2]);
 
