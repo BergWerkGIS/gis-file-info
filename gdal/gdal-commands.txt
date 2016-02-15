@@ -1,0 +1,6 @@
+#reproject, tile, no compression
+gdalwarp --config GDAL_CACHEMAX 1500 -wm 1500 -multi -co "COMPRESS=NONE" -co "BIGTIFF=YES" -co "TILED=YES" -co "BLOCKXSIZE=512" -co "BLOCKYSIZE=512" -t_srs epsg:3857 -srcnodata -10000 slow.rgb.tif slow.reproject.tif
+
+
+#drop alpha layer, tile, compression=LZW
+gdal_translate --config GDAL_CACHEMAX 1500 -b 1 -b 2 -b 3 -co "COMPRESS=LZW" -co BIGTIFF=YES -co "TILED=YES" -co "BLOCKXSIZE=512" -co "BLOCKYSIZE=512" slow.tif slow-tiled-512.tif
