@@ -1,20 +1,21 @@
 {
-    "name": "gis-file-info",
-    "version": "0.0.1",
-    "description": "various scripts to gather informatio about GIS files, mainly for detecting faulty ones",
-    "main": "detect.js",
-    "author": {
-        "name": "Wilhelm Berg",
-        "email": "wb@BergWerk-GIS.at"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/BergWerkGIS/gis-file-info.git"
-    },
-    "dependencies": {
-        "gdal": "*"
-    },
-    "scripts": {
-        "postinstall": "npm dedupe"
-    }
+	"name": "gis-file-info",
+	"version": "0.0.1",
+	"description": "various scripts to gather informatio about GIS files, mainly for detecting faulty ones",
+	"main": "detect.js",
+	"author": {
+		"name": "Wilhelm Berg",
+		"email": "wb@BergWerk-GIS.at"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/BergWerkGIS/gis-file-info.git"
+	},
+	"dependencies": {
+		"gdal": "*",
+		"mapnik": "*"
+	},
+	"scripts": {
+		"postinstall": "npm dedupe"
+	}
 }

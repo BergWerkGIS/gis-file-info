@@ -8,7 +8,7 @@ lyr_authid = lyr.crs().authid()
 lyr_pnt = QgsVectorLayer('Point?crs=' + lyr_authid + '&index=yes', 'points', 'memory')
 lyr_line = QgsVectorLayer('LineString?crs=' + lyr_authid + '&index=yes', 'lines', 'memory')
 lyr_polygon = QgsVectorLayer('Polygon?crs=' + lyr_authid + '&index=yes', 'poly', 'memory')
-lyr_bbox = QgsVectorLayer('Polygon?crs=' + lyr_authid + '&index=yes', 'bbox', 'memory')
+lyr_bbox = QgsVectorLayer('Polygon?crs=' + lyr_authid + '&index=yes', 'bbox-features', 'memory')
 lyr_bbox_parts = QgsVectorLayer('Polygon?crs=' + lyr_authid + '&index=yes', 'bbox-parts', 'memory')
 
 #feats = lyr.getFeatures()
@@ -67,3 +67,4 @@ print 'single part:', cnt_single_part
 print 'multi part:' , cnt_multi_part
 print 'feat cnt:', cnt_single_part + cnt_multi_part
 print 'dataset bbox', xmin, ymin, xmax, ymax
+print 'finished'

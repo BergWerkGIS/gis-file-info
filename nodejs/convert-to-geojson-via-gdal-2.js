@@ -39,8 +39,11 @@ if (add_all_fields) {
 
 var stop = false;
 ds.layers.forEach(function (lyr) {
-	if (stop) { return;}
+	if (stop) { return; }
 	console.log('processing: ', lyr.name);
+	if (0 === lyr.features.count(true)) {
+		console.log('skipping: 0 features');
+	}
 	lyr.features.forEach(function (in_feat) {
 		if (stop) { return;}
 		var out_feat = new gdal.Feature(geojson);
@@ -56,12 +59,15 @@ ds.layers.forEach(function (lyr) {
 		geojson.features.add(out_feat);
 		//stop = true; //uncomment to stop after first feature
 	})
-	console.log('flush');
+	console.log('flush geojson');
 	geojson.flush();
 	return;
 });
 
+geojson.flush();
+console.log('flush out_ds');
 out_ds.flush();
+console.log('close out_ds');
 out_ds.close();
 
 console.log('! DONE !');
