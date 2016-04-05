@@ -6,6 +6,8 @@ if lyr is None:
     raise Exception('select layer in TOC')
 
 skip_cnt = 0
+null_cnt = 0
+qgis_invalid_cnt = 0
 overall_vertex_cnt = 0
 feat_cnt = 0
 feats = lyr.selectedFeatures() if lyr.selectedFeatureCount() > 0 else lyr.getFeatures()
@@ -17,6 +19,7 @@ for in_feat in feats:
     if in_geom is None:
         print in_feat.id(), 'NULL geometry, skipped'
         skip_cnt += 1
+        null_cnt += 1
         continue
     if in_geom.isMultipart():
         multipart_cnt +=1
@@ -49,13 +52,16 @@ for in_feat in feats:
             print geom_error.what()
         print 'fid:', in_feat.id(), 'skipped'
         skip_cnt += 1
+        qgis_invalid_cnt += 1
 
 print '-------'
 print 'layer feature count', lyr.featureCount()
 print 'dataprovider feature count', lyr.dataProvider().featureCount()
 print 'analyzed features', feat_cnt
 print 'multipart features', multipart_cnt
-print 'geos invalid', geos_invalid_cnt
 print 'skipped:', skip_cnt
+print 'null geometries', null_cnt
+print 'qgis invalid:', qgis_invalid_cnt
+print 'geos invalid', geos_invalid_cnt
 print 'overall_vertex_cnt', overall_vertex_cnt
 print 'finished'
