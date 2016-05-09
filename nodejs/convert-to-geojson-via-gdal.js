@@ -6,6 +6,8 @@ var ds = gdal.open(in_file);
 var wgs84 = gdal.SpatialReference.fromEPSG(4326);
 
 gdal.verbose();
+gdal.config.set('CPL_DEBUG', 'ON');
+gdal.config.set('CPL_LOG_ERRORS', 'ON');
 
 ds.layers.forEach(function (lyr) {
 	console.log('processing: ', lyr.name);

@@ -7,6 +7,8 @@ var ds = gdal.open(in_file);
 var wgs84 = gdal.SpatialReference.fromEPSG(4326);
 
 gdal.verbose();
+gdal.config.set('CPL_DEBUG', 'ON');
+gdal.config.set('CPL_LOG_ERRORS', 'ON');
 
 //get all possible fields as we (could) be concatenating different layers
 //eg kml or gpx (routes, tracks, ...)

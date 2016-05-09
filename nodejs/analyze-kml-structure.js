@@ -1,4 +1,7 @@
 var gdal = require('gdal');
+gdal.verbose();
+gdal.config.set('CPL_DEBUG', 'ON');
+gdal.config.set('CPL_LOG_ERRORS', 'ON');
 
 var ds = gdal.open(process.argv[2]);
 

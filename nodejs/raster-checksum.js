@@ -1,6 +1,9 @@
 var fs = require('fs');
 var util = require('util');
 var gdal = require("gdal");
+gdal.verbose();
+gdal.config.set('CPL_DEBUG', 'ON');
+gdal.config.set('CPL_LOG_ERRORS', 'ON');
 
 if(process.argv.length<3){ return console.log('no tiff specified');}
 

@@ -1,4 +1,8 @@
 var gdal = require('gdal');
+gdal.verbose();
+gdal.config.set('CPL_DEBUG', 'ON');
+gdal.config.set('CPL_LOG_ERRORS', 'ON');
+
 var in_file = process.argv[2];
 
 console.log('iterating:', in_file);

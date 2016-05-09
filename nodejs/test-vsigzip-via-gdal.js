@@ -1,4 +1,8 @@
 var gdal = require('gdal');
+gdal.verbose();
+gdal.config.set('CPL_DEBUG', 'ON');
+gdal.config.set('CPL_LOG_ERRORS', 'ON');
+
 console.log('GML Driver: ', gdal.drivers.get('GML'));
 var ds =gdal.open('/vsigzip/hp40ne.gz');
 ds.layers.forEach(function(layer){

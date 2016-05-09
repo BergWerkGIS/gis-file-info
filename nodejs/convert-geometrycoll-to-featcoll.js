@@ -10,6 +10,9 @@ if (fs.existsSync(out_file)) { fs.unlink(out_file); }
 var out_ds = gdal.open(out_file, 'w', 'GeoJSON');
 
 gdal.verbose();
+gdal.config.set('CPL_DEBUG', 'ON');
+gdal.config.set('CPL_LOG_ERRORS', 'ON');
+
 
 ds_in.layers.forEach(function (lyr) {
     console.log('processing: ', lyr.name);
