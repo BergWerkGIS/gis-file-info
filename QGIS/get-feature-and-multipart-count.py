@@ -38,13 +38,13 @@ print hdr2
 for key, val in sorted(mp_feats.items(), key=lambda kv: kv[1], reverse=True):
     req = QgsFeatureRequest(key)
     f = lyr.getFeatures(req).next()
-    r = '{0} | **{1}**'.format(key, val)
+    r = u'{0} | **{1}**'.format(key, val)
     for a in f.attributes():
-        r += ' | {0}'.format(a)
+        r += u' | {0}'.format(a)
     print r
 
     if show_cnt >= show_max:
         break
     show_cnt += 1
 
-print ''
+print 'finished'
