@@ -2,10 +2,15 @@ lyr = iface.activeLayer()
 feats = lyr.selectedFeatures() if lyr.selectedFeatureCount() > 0 else lyr.getFeatures()
 cnt_single_part=0
 cnt_multi_part=0
+cnt_null_geom=0
 cnt_features_overall=0
 mp_feats = {}
 for feat in feats:
     geom = feat.geometry()
+    if geom is None:
+        cnt_null_geom += 1
+        cnt_features_overall += 1
+        continue
     if geom.isMultipart():
         cnt_multi_part += 1
         parts = geom.asGeometryCollection()
@@ -20,6 +25,7 @@ print
 
 print '* single part features:', cnt_single_part
 print '* multi part features:' , cnt_multi_part
+print '* null geometry features:' , cnt_null_geom
 print '* all features:', cnt_features_overall
 print ''
 
