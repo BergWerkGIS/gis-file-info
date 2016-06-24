@@ -9,6 +9,8 @@ var in_file = process.argv[2];
 console.log('iterating:', in_file);
 var cnt_null = 0;
 var cnt_geom_invalid = 0;
+var cnt_all_vertices = 0;
+
 try {
   ds = gdal.open(in_file);
   ds.layers.forEach(function (lyr) {
@@ -23,15 +25,18 @@ try {
       var isValid = geom.isValid();
       var isSimple = geom.isSimple();
       var isRing = geom.isRing();
+      var hasChildren = geom.children ? true : false;
       var ringCnt = 0;
       if (!isValid) {
         cnt_geom_invalid++;
       }
 
-      if (geom.children) {
+      var vertices = 0;
+
+      if (hasChildren) {
         //TODO
       }
-      var vertices = 0;
+
       if (geom.rings) {
         ringCnt = geom.rings.count();
         geom.rings.forEach(function (ring, idx) {
@@ -47,20 +52,23 @@ try {
           }
         });
       }
+
+      cnt_all_vertices += vertices;
+
       if ((vertices >= 10000 || !isValid) && ringCnt > 0) {
         console.log(util.format(
-          '----fid %s: %s vertices'
+          'fid %s: %s vertices'
           , feat.fid
           , vertices
         ));
         console.log(util.format(
-          'fid:%s wkbType:%s geom:(%s,%s,%s) children:%s rings:%s'
+          'fid:%s wkbType:%s geom:(%s,%s,%s) children:%s rings:%s\n~~~~~~~~~~~~~~~~'
           , feat.fid
           , gdal.wkbPolygon25D === geom.wkbType ? 'wkbPolygon25D' : geom.wkbType
-          , isValid ? 'valid' : '----- !!!! NOT valid !!! -----'
+          , isValid ? 'valid' : '-------------------- !!!! NOT valid !!! -------------'
           , isSimple ? 'simple' : 'NOT simple'
           , isRing ? 'ring' : 'NOT ring'
-          , !geom.children ? 'no' : geom.children.count()
+          , !hasChildren ? 'no' : geom.children.count()
           , ringCnt === 0 ? 'no' : ringCnt
         ));
       }
@@ -78,5 +86,6 @@ catch (err) {
 console.log('------------------------------');
 console.log('null geoms    : ', cnt_null);
 console.log('invalid geoms : ', cnt_geom_invalid);
+console.log('all vertices  : ', cnt_all_vertices);
 
 console.log('--- finished ---');
