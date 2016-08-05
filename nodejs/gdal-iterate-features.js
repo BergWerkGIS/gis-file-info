@@ -10,6 +10,7 @@ console.log('iterating:', in_file);
 var cnt_null = 0;
 var cnt_geom_invalid = 0;
 var cnt_all_vertices = 0;
+var cnt_max_rings = 0;
 
 try {
   ds = gdal.open(in_file);
@@ -39,6 +40,7 @@ try {
 
       if (geom.rings) {
         ringCnt = geom.rings.count();
+        cnt_max_rings = Math.max(cnt_max_rings, ringCnt);
         geom.rings.forEach(function (ring, idx) {
           var pnt_cnt = ring.points.count();
           vertices += pnt_cnt;
@@ -73,6 +75,9 @@ try {
         ));
       }
 
+      if (3818 ===feat.fid) {
+        console.log(geom.toWKT());
+      }
     });
   });
 }
@@ -86,6 +91,7 @@ catch (err) {
 console.log('------------------------------');
 console.log('null geoms    : ', cnt_null);
 console.log('invalid geoms : ', cnt_geom_invalid);
+console.log('max rings     : ', cnt_max_rings);
 console.log('all vertices  : ', cnt_all_vertices);
 
 console.log('--- finished ---');
