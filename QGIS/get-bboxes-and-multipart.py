@@ -5,6 +5,9 @@ canvas = iface.mapCanvas()
 map_crs = canvas.mapRenderer().destinationCrs()
 map_authid = map_crs.authid()
 lyr = iface.activeLayer()
+if lyr is None:
+    raise Exception('select layer in TOC')
+
 lyr_authid = lyr.crs().authid()
 fld_orig_fid = 'origfid'
 
@@ -36,7 +39,12 @@ xmax=-180
 ymax=-90
 cnt_single_part=0
 cnt_multi_part=0
+cnt_null_geom=0
+
 for feat in feats:
+    if feat.geometry() is None:
+        cnt_null_geom+=1
+        continue
     bb = feat.geometry().boundingBox()
     if verbose: print bb.toString();
     xmin = xmin if xmin < bb.xMinimum() else bb.xMinimum()
@@ -90,6 +98,7 @@ QgsMapLayerRegistry.instance().addMapLayers([lyr_pnt, lyr_line, lyr_polygon, lyr
 
 print 'single part:', cnt_single_part
 print 'multi part:' , cnt_multi_part
-print 'feat cnt:', cnt_single_part + cnt_multi_part
+print 'null geom:', cnt_null_geom
+print 'feat cnt:', cnt_single_part + cnt_multi_part + cnt_null_geom
 print 'dataset bbox', xmin, ymin, xmax, ymax
 print 'finished'
