@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="3.6.0-Noosa" simplifyLocal="1" simplifyMaxScale="1" maxScale="0" simplifyAlgorithm="0" labelsEnabled="0" simplifyDrawingHints="1" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="0" minScale="1e+08" readOnly="0" simplifyDrawingTol="1">
+<qgis version="3.6.0-Noosa" simplifyLocal="1" simplifyMaxScale="1" maxScale="0" simplifyAlgorithm="0" labelsEnabled="1" simplifyDrawingHints="1" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="0" minScale="1e+08" readOnly="0" simplifyDrawingTol="1">
   <flags>
     <Identifiable>1</Identifiable>
     <Removable>1</Removable>
@@ -33,8 +33,30 @@
     <rotation/>
     <sizescale/>
   </renderer-v2>
+  <labeling type="simple">
+    <settings>
+      <text-style blendMode="0" useSubstitutions="0" textOpacity="1" fieldName="concat( &quot;source_id&quot;, '\n',  &quot;qid&quot;, '\n', &quot;name&quot; )" multilineHeight="1" fontLetterSpacing="0" fontSize="10" textColor="0,0,0,255" previewBkgrdColor="#ffffff" fontItalic="0" fontStrikeout="0" fontFamily="MS Shell Dlg 2" isExpression="1" fontUnderline="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontWeight="50" namedStyle="Regular" fontCapitals="0" fontWordSpacing="0">
+        <text-buffer bufferBlendMode="0" bufferSize="1" bufferJoinStyle="128" bufferSizeUnits="MM" bufferColor="255,255,255,255" bufferOpacity="1" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferNoFill="1" bufferDraw="1"/>
+        <background shapeBorderWidthMapUnitScale="3x:0,0,0,0,0,0" shapeSizeY="0" shapeOffsetY="0" shapeRotationType="0" shapeSizeX="0" shapeRadiiMapUnitScale="3x:0,0,0,0,0,0" shapeBlendMode="0" shapeOffsetUnit="MM" shapeSizeMapUnitScale="3x:0,0,0,0,0,0" shapeBorderWidth="0" shapeOpacity="1" shapeBorderWidthUnit="MM" shapeRadiiUnit="MM" shapeBorderColor="128,128,128,255" shapeJoinStyle="64" shapeRadiiY="0" shapeDraw="0" shapeSizeType="0" shapeType="0" shapeOffsetMapUnitScale="3x:0,0,0,0,0,0" shapeSizeUnit="MM" shapeSVGFile="" shapeRotation="0" shapeRadiiX="0" shapeOffsetX="0" shapeFillColor="255,255,255,255"/>
+        <shadow shadowRadiusMapUnitScale="3x:0,0,0,0,0,0" shadowOffsetMapUnitScale="3x:0,0,0,0,0,0" shadowOpacity="0.7" shadowBlendMode="6" shadowOffsetDist="1" shadowOffsetGlobal="1" shadowOffsetAngle="135" shadowScale="100" shadowOffsetUnit="MM" shadowDraw="0" shadowRadiusAlphaOnly="0" shadowColor="0,0,0,255" shadowRadiusUnit="MM" shadowUnder="0" shadowRadius="1.5"/>
+        <substitutions/>
+      </text-style>
+      <text-format wrapChar="" rightDirectionSymbol=">" placeDirectionSymbol="0" reverseDirectionSymbol="0" autoWrapLength="0" formatNumbers="0" useMaxLineLengthForAutoWrap="1" addDirectionSymbol="0" plussign="0" multilineAlign="1" leftDirectionSymbol="&lt;" decimals="3"/>
+      <placement yOffset="0" quadOffset="4" predefinedPositionOrder="TR,TL,BR,BL,R,L,TSR,BSR" repeatDistanceUnits="MM" offsetType="0" preserveRotation="1" repeatDistance="0" dist="0" maxCurvedCharAngleIn="25" placementFlags="10" repeatDistanceMapUnitScale="3x:0,0,0,0,0,0" rotationAngle="0" centroidWhole="0" placement="0" xOffset="0" priority="5" distUnits="MM" distMapUnitScale="3x:0,0,0,0,0,0" centroidInside="1" maxCurvedCharAngleOut="-25" fitInPolygonOnly="0" labelOffsetMapUnitScale="3x:0,0,0,0,0,0" offsetUnits="MM"/>
+      <rendering scaleMin="0" mergeLines="0" zIndex="0" obstacleType="0" obstacleFactor="1" displayAll="0" drawLabels="1" scaleVisibility="0" limitNumLabels="0" maxNumLabels="2000" fontLimitPixelSize="0" minFeatureSize="0" obstacle="1" upsidedownLabels="0" labelPerPart="0" fontMaxPixelSize="10000" scaleMax="0" fontMinPixelSize="3"/>
+      <dd_properties>
+        <Option type="Map">
+          <Option name="name" value="" type="QString"/>
+          <Option name="properties"/>
+          <Option name="type" value="collection" type="QString"/>
+        </Option>
+      </dd_properties>
+    </settings>
+  </labeling>
   <customproperties>
-    <property value="&quot;gid&quot;" key="dualview/previewExpressions"/>
+    <property key="dualview/previewExpressions">
+      <value>"gid"</value>
+    </property>
   </customproperties>
   <blendMode>0</blendMode>
   <featureBlendMode>0</featureBlendMode>
@@ -312,7 +334,7 @@
   <attributeactions>
     <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
   </attributeactions>
-  <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="&quot;qid&quot;">
+  <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="&quot;source_id&quot;">
     <columns>
       <column name="gid" hidden="0" width="-1" type="field"/>
       <column name="source_id" hidden="0" width="-1" type="field"/>

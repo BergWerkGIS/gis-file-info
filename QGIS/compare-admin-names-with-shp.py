@@ -1,8 +1,8 @@
 # the shapefile(!!!) has to be the selected layer in the TOC
 
 # uncomment the layer to check
-lyrName = 'admin_1.geom'
-#lyrName = 'admin_2.geom'
+#lyrName = 'admin_1.geom'
+lyrName = 'admin_2.geom'
 #lyrName = 'admin_3.geom'
 
 #clear the Python Console, comment if you don't want it
@@ -21,7 +21,9 @@ for featShp in shpFeatures:
     shpName = featShp["Name"]
     shpNameAscii = featShp["Name_ASCII"]
     #filter admin layer by name and source ID (several features might have the same name)
+    #filter = QgsFeatureRequest().setFilterExpression ( u'"name"=\'{0}\''.format(shpName))
     filter = QgsFeatureRequest().setFilterExpression ( u'"name"=\'{0}\' AND "source_id"=\'{1}\''.format(shpName, shpId))
+    #filter = QgsFeatureRequest().setFilterExpression ( u'"source_id"=\'{}\''.format(shpId))
     #filter = QgsFeatureRequest().setFilterExpression ( u'"name_ascii"=\'{0}\' AND "source_id"=\'{1}\''.format(shpNameAscii, shpId))
     adminFeatures = list(adminLyr.getFeatures(filter))
     adminFeatCnt = len(adminFeatures)
