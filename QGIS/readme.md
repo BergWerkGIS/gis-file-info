@@ -1,3 +1,14 @@
+# latest QGIS master in docker
+
+```
+docker pull qgis/qgis:latest
+xhost +
+docker run --rm -it --name qgis \
+    -v /tmp/.X11-unix:/tmp/.X11-unix  \
+    -e DISPLAY=unix$DISPLAY \
+    qgis/qgis:latest qgis
+```
+
 # Coordinates Title Label
 
 ```
