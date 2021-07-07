@@ -3,8 +3,9 @@
 ```
 docker pull qgis/qgis:latest
 xhost +
-docker run --rm -it --name qgis \
+docker run --rm -it --name qgis_latest \
     -v /tmp/.X11-unix:/tmp/.X11-unix  \
+    -v ~/_qgis_docker_share:/hostdir \
     -e DISPLAY=unix$DISPLAY \
     qgis/qgis:latest qgis
 ```
